@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="{{ .Lang }}">
+  {{ partial "head.html" . }}
+  <body class="bg-gray-100">
+    {{ partial "nav.html" . }}
+    {{ block "header" . }}
+      {{ if .IsHome }}
+        {{ partial "header-home.html" . }}
+      {{ else }}
+        {{ partial "header-page.html" . }}
+      {{ end }}
+    {{ end }}
+    {{ block "main" . }}{{ end }}
+    {{ partial "footer.html" . }}
+  </body>
+</html>
+

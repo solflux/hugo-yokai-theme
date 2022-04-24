@@ -1,0 +1,17 @@
+{{ define "main" }}
+  {{ $data := .Data }}
+  <div class="container mx-auto px-4 max-w-4xl" role="main">
+    <article class="bg-white my-5 p-8 rounded border prose max-w-full">
+      <ul>
+      {{ range $key, $value := .Data.Terms.ByCount }}
+      <li>
+        <a href="{{ $.Site.LanguagePrefix }}/{{ $data.Plural }}/{{ $value.Name | urlize }}" class="">
+          {{ $value.Name }}<span class="text-decoration-none"> ({{ $value.Count }})</span>
+        </a>
+      </li>
+      {{ end }}
+      </ul>
+    </article>
+  </div>
+{{ end }}
+

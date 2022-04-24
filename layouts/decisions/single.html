@@ -1,0 +1,38 @@
+{{ define "header" }}
+{{ $date := dateFormat "2006-01-02" .Date }}
+<header class="container mx-auto text-center text-slate-800 mb-2.5">
+    <div class="page-heading">
+        <h1 class="text-5xl font-extrabold">{{ if .Data.Singular }}#{{ end }}{{ .Title }}</h1>
+        <hr class="border-b-2 border-black w-24 m-auto my-5">
+        {{ with $date }}
+        <span class="text-2xl font-light inline-block">Date: {{ . }}</span>
+        {{ end }}
+        {{ with .Params.status }}
+        <span class="text-2xl font-light inline-block"> | Status: {{ . | humanize }}</span>
+        {{ end }}
+        {{ with .Params.deciders }}
+        <span class="text-2xl font-light inline-block"> | Deciders: {{  delimit . ", " }}</span>
+        {{ end }}
+    </div>
+</header>
+{{ end }}
+{{ define "main"}}
+<div class="container mx-auto px-4 max-w-4xl">
+  <article role="main" class="bg-white my-5 p-8 rounded border prose max-w-full">
+    {{ .Content }}
+  </article>
+
+  <ul class="container mx-auto flex justify-between">
+    <li class="inline-block">
+        {{ if .PrevInSection }}
+        <a href="{{ .PrevInSection.Permalink }}" data-toggle="tooltip" data-placement="top" title="{{ .PrevInSection.Title }}">&larr; {{ i18n "previousPost" }}</a>
+        {{ end }}
+      </li>
+    <li class="inline-block">
+        {{ if .NextInSection }}
+        <a href="{{ .NextInSection.Permalink }}" data-toggle="tooltip" data-placement="top" title="{{ .NextInSection.Title }}">{{ i18n "nextPost" }} &rarr;</a>
+        {{ end }}
+      </li>
+  </ul>
+</div>
+{{ end }}

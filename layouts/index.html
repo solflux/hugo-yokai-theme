@@ -1,0 +1,29 @@
+{{ define "main" }}
+  <article role="main" class="container mx-auto px-4 max-w-4xl">
+    <section class="bg-white my-10 p-8 rounded border">
+      <span class="prose">
+      {{ .Content }}
+      </span>
+    </section>
+
+    <section>
+      <h2 class="text-3xl font-bold text-slate-700">Latest Posts</h2>
+      {{ range (last 3 (.Paginate (where (where .Site.Pages "Type" "posts") "Params.hide" "!=" "true" )).Pages.ByLastmod).Reverse}}
+      <article class="bg-white my-5 p-8 rounded border prose max-w-full">
+        <a href="{{ .Permalink }}"><h2 class="mt-0">{{ .Title }}</h2></a>
+        <div class="post-entry">
+            {{ .Summary }}
+            <a href="{{ .Permalink }}" class="post-read-more">[{{ i18n "readMore" }}]</a>
+        </div>
+      </article>
+      {{ else }}
+      <article class="bg-white my-5 p-8 rounded border prose max-w-full">
+        <p>No posts found ¯\_(ツ)_/¯</p>
+      </article>
+      {{ end }}
+    </section>
+
+
+  </article>
+{{ end }}
+

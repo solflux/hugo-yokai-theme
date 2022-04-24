@@ -1,0 +1,12 @@
+name = "Yokai"
+description = "Simple theme for team-based documentation using Hugo"
+tags = ["docs", "company", "blog", "minimal", "responsive"]
+features = ["themes","minimal", "responsive"]
+
+[author]
+    name = "Sam Hall"
+    homepage = "http://sam-hall.dev"
+
+[module]
+ [[module.imports]]
+    path = "github.com/kaushalmodi/hugo-debugprint"

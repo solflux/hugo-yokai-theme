@@ -1,0 +1,67 @@
+{{ define "header" }}
+  <header class="container mx-auto text-center text-slate-800 mb-2.5">
+    <div class="page-heading">
+      <h1 class="text-5xl font-extrabold">{{ if .Data.Singular }}#{{ end }}{{ .Title }}</h1>
+      <hr class="border-b-2 border-black w-24 m-auto my-5">
+      {{with .Content}}
+      <span class="text-2xl font-light">{{ . }}</span>
+      {{end}}
+      
+    </div>
+  </header>
+{{ end }}
+{{ define "main" }}
+  <div class="container mx-auto px-4 max-w-4xl" role="main">
+    <div class="posts-list">
+      {{ range .Paginator.Pages }}
+        <article class="bg-white my-5 p-8 rounded border prose max-w-full">
+          <a href="{{ .Permalink }}">
+            <h2 class="mt-0">{{ .Title }}</h2>
+
+            {{ if .Params.subtitle }}
+              <h3 class="post-subtitle">
+                {{ .Params.subtitle }}
+              </h3>
+            {{ end }}
+          </a>
+
+          <p class="post-meta">
+            {{ default (i18n "dateFormat") .Site.Params.dateformat | .Date.Format | i18n "postedOnDate" }}
+          </p>
+          <div class="post-entry">
+            {{ if .Truncated }}
+              {{ .Summary }}
+              <a href="{{ .Permalink }}" class="post-read-more">[{{ i18n "readMore" }}]</a>
+            {{ else }}
+              {{ .Content }}
+            {{ end }}
+          </div>
+
+          {{ if .Params.tags }}
+            <span class="post-meta">
+              {{ range .Params.tags }}
+                #<a href="{{ $.Site.LanguagePrefix }}/tags/{{ . | urlize }}">{{ . }}</a>&nbsp;
+              {{ end }}
+            </span>
+          {{ end }}
+    
+        </article>
+      {{ end }}
+    </div>
+    {{ if or (.Paginator.HasPrev) (.Paginator.HasNext) }}
+      <ul class="pager main-pager">
+        {{ if .Paginator.HasPrev }}
+          <li class="previous">
+            <a href="{{with .Site.RegularPages.Prev . }}{{.RelPermalink}}{{end}}">&larr; {{ i18n "newerPosts" }}</a>
+          </li>
+        {{ end }}
+        {{ if .Paginator.HasNext }}
+          <li class="next">
+            <a href="{{with .Site.RegularPages.Next . }}{{.RelPermalink}}{{end}}">{{ i18n "olderPosts" }} &rarr;</a>
+          </li>
+        {{ end }}
+      </ul>
+    {{ end }}
+  </div>
+{{ end }}
+

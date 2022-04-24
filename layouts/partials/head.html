@@ -1,0 +1,41 @@
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<!-- Site Title, Description, Author, and Favicon -->
+{{- with .Title | default .Site.Title }}
+  <title>{{ . }}</title>
+{{- end }}
+{{- with .Description | default .Params.subtitle | default .Summary }}
+  <meta name="description" content="{{ . }}">
+{{- end }}
+  <meta name="author" content="{{ .Site.Author.name }}"/>
+{{- with .Site.Params.favicon }}
+  <link href='{{ . | absURL }}' rel='icon' type='image/x-icon'/>
+{{- end -}}
+<!-- Links -->
+  <link rel="canonical" href="{{ .Permalink | absLangURL }}" />
+  <link rel="alternate" href="{{ "index.xml" | absLangURL }}" type="application/rss+xml" title="{{ .Site.Title }}">
+<!-- Styesheets -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        fontFamily: {
+          'sans': ['"Open Sans"', '"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif']
+        },
+        extend: {
+          colors: {
+            'anchor-blue': '#0A70DC',
+            'harbourside-blue': '#0AABF3',
+            'millenium-mint': '#00DEB2',
+            'clifton-navy': '#071D49',
+            'spire-yellow': '#FEE942',
+            'kendal-gold': '#EECE6C'
+          }
+        }
+      }
+    }
+  </script>
+{{- partial "head_custom.html" . }}
+</head>

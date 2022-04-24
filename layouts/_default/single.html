@@ -1,0 +1,20 @@
+{{ define "main" }}
+<div class="container mx-auto px-4 max-w-4xl">
+  <article role="main" class="bg-white my-5 p-8 rounded border prose max-w-full">
+    {{ .Content }}
+  </article>
+
+  <ul class="container mx-auto flex justify-between">
+    <li class="inline-block">
+        {{ if .PrevInSection }}
+        <a href="{{ .PrevInSection.Permalink }}" data-toggle="tooltip" data-placement="top" title="{{ .PrevInSection.Title }}">&larr; {{ i18n "previousPost" }}</a>
+        {{ end }}
+      </li>
+    <li class="inline-block">
+        {{ if .NextInSection }}
+        <a href="{{ .NextInSection.Permalink }}" data-toggle="tooltip" data-placement="top" title="{{ .NextInSection.Title }}">{{ i18n "nextPost" }} &rarr;</a>
+        {{ end }}
+      </li>
+  </ul>
+</div>
+{{ end }}
