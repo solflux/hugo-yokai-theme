@@ -6,6 +6,6 @@ Simple theme for team docs, decisions and a blog. Built using Tailwind and loose
 
     $ mkdir themes
     $ cd themes
-    $ git clone https://github.com/solflux/hugo-yokai.git yokai
+    $ git clone https://github.com/solflux/hugo-yokai-theme.git yokai
 
 See [the Hugo documentation](http://gohugo.io/themes/installing/) for more information.
