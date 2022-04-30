@@ -38,11 +38,16 @@
           </div>
 
           {{ if .Params.tags }}
-            <span class="post-meta">
+          <div class="post-meta mt-5 border-t pt-4 relative">
+            <span>
+              Published: {{ .Date.Format "2006-01-02" }}
+            </span>
+            <span class="block absolute right-0 top-0 pt-4">
               {{ range .Params.tags }}
-                #<a href="{{ $.Site.LanguagePrefix }}/tags/{{ . | urlize }}">{{ . }}</a>&nbsp;
+                #<a class="font-normal" href="{{ $.Site.LanguagePrefix }}/tags/{{ . | urlize }}">{{ . }}</a>&nbsp;
               {{ end }}
             </span>
+          </div>
           {{ end }}
     
         </article>
