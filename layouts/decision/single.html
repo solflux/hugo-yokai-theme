@@ -22,7 +22,7 @@
     {{ .Content }}
   </article>
 
-  <ul class="container mx-auto flex justify-between">
+  <ul class="container mx-auto flex justify-between pb-5">
     <li class="inline-block">
         {{ if .PrevInSection }}
         <a href="{{ .PrevInSection.Permalink }}" data-toggle="tooltip" data-placement="top" title="{{ .PrevInSection.Title }}">&larr; {{ i18n "previousPost" }}</a>
