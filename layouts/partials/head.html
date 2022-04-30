@@ -13,6 +13,10 @@
 {{- with .Site.Params.favicon }}
   <link href='{{ . | absURL }}' rel='icon' type='image/x-icon'/>
 {{- end -}}
+{{ if .Params.math }}
+<!-- LaTex support -->
+{{partial "helpers/katex.html" }}
+{{ end }}
 <!-- Links -->
   <link rel="canonical" href="{{ .Permalink | absLangURL }}" />
   <link rel="alternate" href="{{ "index.xml" | absLangURL }}" type="application/rss+xml" title="{{ .Site.Title }}">
